@@ -9,56 +9,47 @@
 
 using namespace std;
 
-void getData(ifstream &iFile, vector<string>& fName, vector<string>& lName, vector<double>& tNum, vector<string>& major, vector<string>& advisor, vector<double>& gpa, vector<double>& credits,  vector<double>& year, vector<string>& hard, vector<string>& easy)
+void getData(ifstream &iFile, vector<string>& fName, vector<string>& lName, vector<string>& tNum, vector<string>& major,
+	vector<string>& advisor, vector<double>& gpa, vector<double>& credits,  vector<double>& year, vector<string>& hard, vector<string>& easy)
 {
-string tempF;
-string tempL;
-string tempT;
-string tempM;
-string tempA;
-string tempG;
-string tempC;
-string tempY;
-string tempH;
-string tempE;
+	string tempF;
+	string tempL;
+	string tempT;
+	string tempM;
+	string tempA;
+	double tempG;
+	double tempC;
+	double tempY;
+	string tempH;
+	string tempE;
 
-while (!iFile.eof())
-{
+	while (!iFile.eof())
+	{
 	getline(iFile, tempF);
-	fName.push_back(tempF);
-
 	getline(iFile, tempL);
-	lName.push_back(tempL);
-
-	iFile >> tempT;
-	tNum.push_back(tempT);
-	iFile.ignore();
-
+	getline(iFile, tempT);
 	getline(iFile, tempM);
-	major.push_back(tempM);
-
 	getline(iFile, tempA);
-	advisor.push_back(tempA)
-
 	iFile >> tempG;
-	gpa.push_back(tempG);
-	iFile.ignore();
-
 	iFile >> tempC;
-	credits.push_back(tempC);
-	iFile.ignore();
-
 	iFile >> tempY;
-	year.push_back(tempY);
 	iFile.ignore();
-
 	getline(iFile, tempH);
-	hard.push_back(tempH);
-
 	getline(iFile, tempE);
+
+
+	fName.push_back(tempF);
+	lName.push_back(tempL);
+	tNum.push_back(tempT);
+	major.push_back(tempM);
+	advisor.push_back(tempA);
+	gpa.push_back(tempG);
+	credits.push_back(tempC);
+	year.push_back(tempY);
+	hard.push_back(tempH);
 	easy.push_back(tempE);
 
-}
+	}
 }
 
 void fileCheck(ifstream& iFile)
@@ -68,9 +59,11 @@ void fileCheck(ifstream& iFile)
 		cout << "Input file not found" << endl;
 		exit(1);
 	}
+
 }
 
-void output(vector<string> fName, vector<string> lName, vector<double> tNum, vector<string> major, vector<string> advisor, vector<double> gpa, vector<double> credits, vector<double> year, vector<string> hard, vector<string> easy)
+void output(vector<string> fName, vector<string> lName, vector<string> tNum, vector<string> major, vector<string> advisor, vector<double> gpa, 
+	vector<double> credits, vector<double> year, vector<string> hard, vector<string> easy,ofstream& oFile)
 {
 	for (int a = 0; fName.size(); a++)
 	{
@@ -85,18 +78,34 @@ void output(vector<string> fName, vector<string> lName, vector<double> tNum, vec
 		cout << "Hardest class taken so far: " << hard[a] << endl;
 		cout << "Easiest class taken so far: " << easy[a] << endl;
 	}
+
+	for (int a = 0; fName.size(); a++)
+	{
+		oFile << "First Name: " << fName[a] << endl;
+		oFile << "Last Name: " << lName[a] << endl;
+		oFile << "T-Number: " << tNum[a] << endl;
+		oFile << "Major: " << major[a] << endl;
+		oFile << "Advosor Name: " << advisor[a] << endl;
+		oFile << "GPA: " << gpa[a] << endl;
+		oFile << "Credit Hours: " << credits[a] << endl;
+		oFile << "Year expected to graduate: " << year[a] << endl;
+		oFile << "Hardest class taken so far: " << hard[a] << endl;
+		oFile << "Easiest class taken so far: " << easy[a] << endl;
+	}
 }
 
 int main()
 {
 	ifstream iFile;
 	iFile.open("input.txt");
+	ofstream oFile;
+	oFile.open("output.txt");
 
 	fileCheck(iFile);
 
 	vector<string> fName;
 	vector<string> lName;
-	vector<double> tNum;
+	vector<string> tNum;
 	vector<string> major;
 	vector<string> advisor;
 	vector<double> gpa;
@@ -108,7 +117,7 @@ int main()
 
 	getData(iFile, fName, lName, tNum, major, advisor, gpa, credits, year, hard, easy);
 
-	output(fName, lName, tNum, major, advisor, gpa, credits, year, hard, easy);
+	output(fName, lName, tNum, major, advisor, gpa, credits, year, hard, easy, oFile);
 
 	iFile.close();
 

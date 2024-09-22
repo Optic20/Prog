@@ -1,0 +1,30 @@
+Alex
+Johnson
+T12345678
+Psychology
+Dr. Smith
+3.5
+90
+2025
+Sdvanced Statistics
+Intro to Psychology
+Jamie
+Taylor
+T987654432
+Biology
+Dr. Lee
+3.8
+75
+2026
+Organic Chem
+General Biology
+Morgan
+Rivera
+T45678901
+Comp Sci
+Dr. Kim
+3.6
+80
+2025
+Data Structures
+Intro to Programming

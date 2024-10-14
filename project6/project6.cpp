@@ -21,25 +21,95 @@ public:
 		}
 	}
 
+	void setFirstName(string text)
+	{
+		fName = text;
+	}
+	void setLastName(string text)
+	{
+		lName = text;
+	}
+	void setJobTitle(string text)
+	{
+		jobTitle = text;
+	}
+	void setEmpNum(string text)
+	{
+		empNum = text;
+	}
+	void setHoursWorked(double number)
+	{
+		hoursWorked = number;
+	}
+	void setWage(double number)
+	{
+		wage = number;
+	}
+	void setDed(int number)
+	{
+		ded = number;
+	}
+
+	string getFirstName()
+	{
+		return fName;
+	}
+	string getLastName()
+	{
+		return lName;
+	}
+	string getJobTitle()
+	{
+		return jobTitle;
+	}
+	string getEmpNum()
+	{
+		return empNum;
+	}
+	double getHoursWorked()
+	{
+		return hoursWorked;
+	}
+	double getWage()
+	{
+		return wage;
+	}
+	int getDed()
+	{
+		return ded;
+	}
+
 	void getData(vector<pay>& emp, ifstream& iFile)
 	{
 		pay temp;
 
 		while (!iFile.eof())
 		{
-			iFile >> temp.fName;
-			iFile >> temp.lName;
-			iFile >> temp.jobTitle;
-			iFile >> temp.empNum;
-			iFile >> temp.hoursWorked;
-			iFile >> temp.wage;
-			iFile >> temp.ded;
+			string str;
+			double dbl;
+			int i;
+
+			iFile >> str;
+			temp.setFirstName(str);
+			iFile >> str;
+			temp.setLastName(str);
+			iFile >> str;
+			temp.setJobTitle(str);
+			iFile >> str;
+			temp.setEmpNum(str);
+			iFile >> dbl;
+			temp.setHoursWorked(dbl);
+			iFile >> dbl;
+			temp.setWage(dbl);
+			iFile >> i;
+			temp.setDed(i);
 			emp.push_back(temp);
 		}
 	}
 
 	void calculate(vector<pay>& emp)
 	{
+		
 		if (hoursWorked > 40)
 		{
 			oTWage = wage * 1.5;

@@ -1,0 +1,21 @@
+Alice
+Smith
+Software Engineer
+001234
+40
+25
+3
+Brian
+Johnson
+Marketing Manager
+001235
+38
+30
+2
+Carla
+Lee
+Data Analyst
+001236
+45
+28.50
+4
